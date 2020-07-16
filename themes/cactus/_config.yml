@@ -15,6 +15,7 @@ direction: ltr
 # languages/*.yml
 nav:
   home: /
+  search: /search/
   # about: /about/
   # articles: /archives/
   # projects: projects_url
@@ -28,9 +29,9 @@ nav:
 # only 'mail' is an exception.
 social_links:
   github: https://github.com/RottenMan
-  qq: tencent://message/?Menu=yes&amp;uin=1054510164&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45
-  weixin: 1054510164@qq.com
-  mail: mailto:name@email.com
+  qq: tencent://message/?Menu=yes&amp;uin=1054510164&amp;Service=300&amp;
+  weixin: /wechat.html
+  mail: mailto:1054510164@qq.com
 
  
 
@@ -157,4 +158,4 @@ baidu_analytics:
 # Fill in you Gravatar user id / email if you want to use your gravatar as the
 # logo and/or favicons of you website.
 gravatar:
-  email: name@email.com
+  email: 1054510164@qq.com
