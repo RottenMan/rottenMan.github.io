@@ -1,0 +1,17 @@
+[
+    {
+       "name":"JavaScript教程",
+       "url":"https://zh.javascript.info/",
+       "desc":"JavaScript 标准教程"
+    },
+    {
+        "name":"React",
+        "url":"https://zh-hans.reactjs.org/tutorial/tutorial.html",
+        "desc":"React 入门教程"
+     },
+     {
+        "name":"全栈公开课",
+        "url":"https://fullstackopen.com/",
+        "desc":"深入浅出现代Web编程"
+     }
+]

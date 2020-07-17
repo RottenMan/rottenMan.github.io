@@ -3,6 +3,8 @@
     <%- markdown(config.description) %>
   <% } %>
   <% if (theme.social_links) { %>
+    <!-- 标题 -->
+    Le vent se lève, il faut tenter de vivre.
     <p>
       <%= __('index.find_me_on') %>
       <% var nb_links = Object.keys(theme.social_links).length %>
@@ -23,6 +25,7 @@
             : '.' ) %>
         <% i+=1 %>
       <% } %>
+      
     </p>
   <% } %>
 </section>
@@ -57,7 +60,7 @@
 
 <% if (site.data.projects) { %>
 <section id="projects">
-  <span class="h1"><a href="<%- url_for(theme.projects_url) %>"><%= __('index.projects') %></a></span>
+  <span class="h1"><a href="https://github.com/RottenMan"><%= __('index.projects') %></a></span>
   <ul class="project-list">
     <% for(var obj in site.data.projects){ %>
       <li class="project-item">

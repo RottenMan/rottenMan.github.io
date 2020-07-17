@@ -61,7 +61,7 @@ archive:
 # Options:
 #   - show_updated: show the last modification date.
 post:
-  show_updated: false
+  show_updated: true
 
 # Customize the copyright years
 # Note: if start_year/end_year not provided, will use current year.
@@ -109,7 +109,7 @@ favicon:
 
 # The color scheme that should be used to highlight codeblocks.
 # See source/css/_highlight for a list of all available color schemes.
-# highlight: rainbow
+highlight: railscasts.styl
 
 # Set the color scheme.
 # Available color schemes are 'dark', 'light', 'classic' and 'white'.
