@@ -15,12 +15,13 @@ direction: ltr
 # languages/*.yml
 nav:
   home: /
-  search: /search/
-  # about: /about/
+  about: /about/
   # articles: /archives/
-  # projects: projects_url
+  projects: /projects/
   标签: /tags/
   分类: /categories/
+  search: /search/
+  
 
 
 # Links to your social media accounts.

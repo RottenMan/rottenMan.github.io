@@ -13,5 +13,15 @@
         "name":"全栈公开课",
         "url":"https://fullstackopen.com/",
         "desc":"深入浅出现代Web编程"
+     },
+     {
+      "name":"公益图床",
+      "url":"https://sbimg.cn/",
+      "desc":"免费图床"
+     },
+     {
+      "name":"阿里图标库",
+      "url":"https://www.iconfont.cn/",
+      "desc":"阿里矢量图标库"
      }
 ]
