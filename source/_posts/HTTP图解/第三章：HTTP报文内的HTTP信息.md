@@ -1,3 +1,13 @@
+---
+categories:
+    - HTTP网络协议
+tags:
+	 - 图解HTTP
+data: 2020-8-17 21:00:00
+---
+
+
+
 ## HTTP报文
 
 1. 用于 HTTP 协议交互的信息被称为 HTTP 报文
