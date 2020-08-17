@@ -5,6 +5,7 @@ categories:
 tags:
     - promise
     - ES6
+date: 2020-08-13
 ---
 
 ## Promise基本概念
