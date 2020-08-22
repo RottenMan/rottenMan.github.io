@@ -207,13 +207,18 @@ console.log(...hd.keys());
 
 map的key可以为任意类型，下面使用DOM节点做为键来记录数据。
 
-```javascript
-<body>
+> HTML
+
+```html
   <div desc="小夜勃">object</div>
   <div desc="博客笔记">boreas</div>
-</body>
+```
 
-<script>
+
+
+> JavaScript
+
+```javascript
   const divMap = new Map();
   const divs = document.querySelectorAll("div");
 
@@ -227,14 +232,15 @@ map的key可以为任意类型，下面使用DOM节点做为键来记录数据�
       alert(divMap.get(this).content);
     });
   });
-</script>
 ```
 
 ### 实例操作
 
 当不接受协议时无法提交表单，并根据自定义信息提示用户。
 
-```javascript
+> HTML
+
+```html
 <form action="" onsubmit="return post()">
     接受协议:
     <input type="checkbox" name="agreement" message="请接受接受协议" />
@@ -242,9 +248,13 @@ map的key可以为任意类型，下面使用DOM节点做为键来记录数据�
     <input type="checkbox" name="student" message="网站只对学生开放" />
     <input type="submit" />
   </form>
-</body>
+```
 
-<script>
+
+
+> JavaScript
+
+```javascript
   function post() {
     let map = new Map();
 
@@ -263,7 +273,6 @@ map的key可以为任意类型，下面使用DOM节点做为键来记录数据�
       return config.status;
     });
   }
-</script>
 ```
 
 ## WeakMap
@@ -288,18 +297,23 @@ new WeakSet("boreas"); //TypeError: Invalid value used in weak set
 
 将DOM节点保存到`WeakSet`
 
-```javascript
-<body>
+> HTML
+
+```html
   <div>object</div>
   <div>boreas</div>
-</body>
-<script>
-  const hd = new WeakMap();
+```
+
+
+
+> JavaScript
+
+```javascript
+ const hd = new WeakMap();
   document
     .querySelectorAll("div")
     .forEach(item => hd.set(item, item.innerHTML));
   console.log(hd); //WeakMap {div => "boreas", div => "object"}
-</script>
 ```
 
 ### 基本操作
