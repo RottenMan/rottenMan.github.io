@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="en" data-default-color-scheme="&#34;auto&#34;"><head><meta charset="UTF-8"><link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png"><link rel="icon" type="image/png" href="/img/FD.png"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="theme-color" content="#2f4154"><meta name="description" content="记录学习的点点滴滴"><meta name="author" content="不愿透露姓名的周先生"><meta name="keywords" content="前端,JavaScript,技术,个人博客,学习,笔记,周新桥,前端程序员,技术博客,废物,kkfive, "><title>JavaScript：Map - 看看废物的博客</title><link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css"><link rel="stylesheet" href="/lib/hint/hint.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/pojoaque.min.css"><link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css"><link rel="stylesheet" href="/css/main.css"><script id="fluid-configs">var Fluid=window.Fluid||{},CONFIG={hostname:"www.kkfive.com",root:"/",version:"1.8.5",typing:{enable:!0,typeSpeed:70,cursorChar:"🛸",loop:!1},toc:{enable:!0,headingSelector:"h1,h2,h3,h4,h5,h6",collapseDepth:0},anchorjs:{enable:!0,element:"h1,h2,h3,h4,h5,h6",placement:"right",visible:"hover",icon:""},copy_btn:!0,image_zoom:{enable:!0},lazyload:{enable:!0,onlypost:!1},web_analytics:{enable:!0,baidu:"7c3a86d2ad975111fcb1544184425260",google:null,gtag:null,tencent:{sid:null,cid:null},woyaola:null,cnzz:null,leancloud:{app_id:null,app_key:null,server_url:null}}}</script><script src="/js/utils.js"></script><script src="/js/color-schema.js"></script><meta name="generator" content="Hexo 5.2.0"></head><body><header style="height:70vh"><nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"><div class="container"> <a class="navbar-brand" href="/">&nbsp;<strong>废物的主页</strong>&nbsp;</a> <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon"><span></span><span></span><span></span></div></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav ml-auto text-center"><li class="nav-item"><a class="nav-link" href="/"><i class="iconfont icon-home-fill"></i> 主页</a></li><li class="nav-item"><a class="nav-link" href="/archives/"><i class="iconfont icon-archive-fill"></i> 文章</a></li><li class="nav-item"><a class="nav-link" href="/categories/"><i class="iconfont icon-category-fill"></i> 分类</a></li><li class="nav-item"><a class="nav-link" href="/tags/"><i class="iconfont icon-tags-fill"></i> 标签</a></li><li class="nav-item"><a class="nav-link" href="/about/"><i class="iconfont icon-user-fill"></i> 关于</a></li><li class="nav-item"><a class="nav-link" href="/links/"><i class="iconfont icon-link-fill"></i> 友链</a></li><li class="nav-item" id="search-btn"> <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i class="iconfont icon-search"></i>&nbsp;</a></li><li class="nav-item" id="color-toggle-btn"> <a class="nav-link" href="javascript:">&nbsp;<i class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a></li></ul></div></div></nav><div class="banner intro-2" id="background" parallax="true" style="background:url(https://darrenclover.gitee.io/img/guidang.png) no-repeat center center;background-size:cover"><div class="full-bg-img"><div class="mask flex-center" style="background-color:rgba(0,0,0,.3)"><div class="page-header text-center fade-in-up"><span class="h2" id="subtitle" title="JavaScript：Map"></span><div class="mt-3"><span class="post-meta"><i class="iconfont icon-date-fill" aria-hidden="true"></i> <time datetime="2020-08-22 00:00" pubdate>August 22, 2020 am</time></span></div><div class="mt-1"><span class="post-meta mr-2"><i class="iconfont icon-chart"></i> 2.1k 字</span><span class="post-meta mr-2"><i class="iconfont icon-clock-fill"></i> 34 分钟</span></div></div></div></div></div></header><main><div class="container-fluid"><div class="row"><div class="d-none d-lg-block col-lg-2"></div><div class="col-lg-8 nopadding-md"><div class="container nopadding-md" id="board-ctn"><div class="py-5" id="board"><article class="post-content mx-auto"><h1 style="display:none">JavaScript：Map</h1><div class="markdown-body"><p><code>Map</code>是一种新的集合类型，为这门语言带来了真正的键 / 值存储机制。<code>Map</code>的大多数特性都可以通过<code>Object</code>类型实现，但二者之间还是存在一些细微的差异</p><a id="more"></a><h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>Map是一组键值对的结构，用于解决以往不能用对象做为键的问题</p><ul><li>具有极快的查找速度</li><li>函数、对象、基本类型都可以作为键或值</li></ul><h3 id="声明定义"><a href="#声明定义" class="headerlink" title="声明定义"></a>声明定义</h3><p>可以接受一个数组作为参数，该数组的成员是一个表示键值对的数组。</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> m = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([
+  [<span class="hljs-string">&#x27;object&#x27;</span>, <span class="hljs-string">&#x27;木易&#x27;</span>],
+  [<span class="hljs-string">&#x27;boreas&#x27;</span>, <span class="hljs-string">&#x27;博客笔记&#x27;</span>]
+]);
+
+<span class="hljs-built_in">console</span>.log(m.get(<span class="hljs-string">&#x27;object&#x27;</span>)); <span class="hljs-comment">//木易</span></code></pre></div><p>使用<code>set</code> 方法添加元素，支持链式操作</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<span class="hljs-keyword">let</span> obj = &#123;
+  name: <span class="hljs-string">&quot;木易&quot;</span>
+&#125;;
+
+map.set(obj, <span class="hljs-string">&quot;object.com&quot;</span>).set(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;boreas&quot;</span>);
+
+<span class="hljs-built_in">console</span>.log(map.entries()); <span class="hljs-comment">//MapIterator &#123;&#123;…&#125; =&gt; &quot;object.com&quot;, &quot;name&quot; =&gt; &quot;boreas&quot;&#125;</span></code></pre></div><p>使用构造函数<code>new Map</code>创建的原理如下</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<span class="hljs-keyword">const</span> arr = [[<span class="hljs-string">&quot;object&quot;</span>, <span class="hljs-string">&quot;木易&quot;</span>], [<span class="hljs-string">&quot;boreas&quot;</span>, <span class="hljs-string">&quot;博客笔记&quot;</span>]];
+
+arr.forEach(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> &#123;
+  hd.set(key, value);
+&#125;);
+<span class="hljs-built_in">console</span>.log(hd);</code></pre></div><p>对于键是对象的<code>Map</code>， 键保存的是内存地址，值相同但内存地址不同的视为两个键。</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">&quot;木易&quot;</span>];
+<span class="hljs-keyword">const</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+hd.set(arr, <span class="hljs-string">&quot;object.com&quot;</span>);
+<span class="hljs-built_in">console</span>.log(hd.get(arr)); <span class="hljs-comment">//object.com</span>
+<span class="hljs-built_in">console</span>.log(hd.get([<span class="hljs-string">&quot;木易&quot;</span>])); <span class="hljs-comment">//undefined</span></code></pre></div><h3 id="获取数量"><a href="#获取数量" class="headerlink" title="获取数量"></a>获取数量</h3><p>获取数据数量</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(map.size);</code></pre></div><h3 id="元素检测"><a href="#元素检测" class="headerlink" title="元素检测"></a>元素检测</h3><p>检测元素是否存在</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(map.has(obj1));</code></pre></div><h3 id="读取元素"><a href="#读取元素" class="headerlink" title="读取元素"></a>读取元素</h3><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+
+<span class="hljs-keyword">let</span> obj = &#123;
+	name: <span class="hljs-string">&#x27;木易&#x27;</span>
+&#125;
+
+map.set(obj, <span class="hljs-string">&#x27;object.com&#x27;</span>);
+<span class="hljs-built_in">console</span>.log(map.get(obj));</code></pre></div><h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><p>使用 <code>delete()</code> 方法删除单个元素</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<span class="hljs-keyword">let</span> obj = &#123;
+	name: <span class="hljs-string">&#x27;木易&#x27;</span>
+&#125;
+
+map.set(obj, <span class="hljs-string">&#x27;object.com&#x27;</span>);
+<span class="hljs-built_in">console</span>.log(map.get(obj));
+
+map.delete(obj);
+<span class="hljs-built_in">console</span>.log(map.get(obj));</code></pre></div><p>使用<code>clear</code>方法清除Map所有元素</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<span class="hljs-keyword">let</span> obj1 = &#123;
+	name: <span class="hljs-string">&#x27;boreas.com&#x27;</span>
+&#125;
+
+<span class="hljs-keyword">let</span> obj2 = &#123;
+	name: <span class="hljs-string">&#x27;object.com&#x27;</span>
+&#125;
+
+map.set(obj1, &#123;
+	title: <span class="hljs-string">&#x27;内容管理系统&#x27;</span>
+&#125;);
+
+map.set(obj2, &#123;
+	title: <span class="hljs-string">&#x27;木易&#x27;</span>
+&#125;);
+
+<span class="hljs-built_in">console</span>.log(map.size);
+<span class="hljs-built_in">console</span>.log(map.clear());
+<span class="hljs-built_in">console</span>.log(map.size);</code></pre></div><h3 id="遍历数据"><a href="#遍历数据" class="headerlink" title="遍历数据"></a>遍历数据</h3><p>使用 <code>keys()/values()/entries()</code> 都可以返回可遍历的迭代对象。</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;object&quot;</span>, <span class="hljs-string">&quot;木易&quot;</span>], [<span class="hljs-string">&quot;boreas&quot;</span>, <span class="hljs-string">&quot;博客笔记&quot;</span>]]);
+<span class="hljs-built_in">console</span>.log(hd.keys()); <span class="hljs-comment">//MapIterator &#123;&quot;object&quot;, &quot;boreas&quot;&#125;</span>
+<span class="hljs-built_in">console</span>.log(hd.values()); <span class="hljs-comment">//MapIterator &#123;&quot;木易&quot;, &quot;博客笔记&quot;&#125;</span>
+<span class="hljs-built_in">console</span>.log(hd.entries()); <span class="hljs-comment">//MapIterator &#123;&quot;object&quot; =&gt; &quot;木易&quot;, &quot;boreas&quot; =&gt; &quot;博客笔记&quot;&#125;</span></code></pre></div><p>可以使用<code>keys/values</code> 函数遍历键与值</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;object&quot;</span>, <span class="hljs-string">&quot;木易&quot;</span>], [<span class="hljs-string">&quot;boreas&quot;</span>, <span class="hljs-string">&quot;博客笔记&quot;</span>]]);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> hd.keys()) &#123;
+  <span class="hljs-built_in">console</span>.log(key);
+&#125;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> hd.values()) &#123;
+  <span class="hljs-built_in">console</span>.log(value);
+&#125;</code></pre></div><p>使用<code>for/of</code>遍历操作，直播遍历Map 等同于使用<code>entries()</code> 函数</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;object&quot;</span>, <span class="hljs-string">&quot;木易&quot;</span>], [<span class="hljs-string">&quot;boreas&quot;</span>, <span class="hljs-string">&quot;博客笔记&quot;</span>]]);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> hd) &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>=&gt;<span class="hljs-subst">$&#123;value&#125;</span>`</span>);
+&#125;</code></pre></div><p>使用<code>forEach</code>遍历操作</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;object&quot;</span>, <span class="hljs-string">&quot;木易&quot;</span>], [<span class="hljs-string">&quot;boreas&quot;</span>, <span class="hljs-string">&quot;博客笔记&quot;</span>]]);
+hd.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</span>) =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>=&gt;<span class="hljs-subst">$&#123;value&#125;</span>`</span>);
+&#125;);</code></pre></div><h3 id="数组转换"><a href="#数组转换" class="headerlink" title="数组转换"></a>数组转换</h3><p>可以使用<code>展开语法</code> 或 <code>Array.form</code> 静态方法将Set类型转为数组，这样就可以使用数组处理函数了</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;object&quot;</span>, <span class="hljs-string">&quot;木易&quot;</span>], [<span class="hljs-string">&quot;boreas&quot;</span>, <span class="hljs-string">&quot;博客笔记&quot;</span>]]);
+
+<span class="hljs-built_in">console</span>.log(...hd); <span class="hljs-comment">//(2) [&quot;object&quot;, &quot;木易&quot;] (2) [&quot;boreas&quot;, &quot;博客笔记&quot;]</span>
+<span class="hljs-built_in">console</span>.log(...hd.entries()); <span class="hljs-comment">//(2) [&quot;object&quot;, &quot;木易&quot;] (2) [&quot;boreas&quot;, &quot;博客笔记&quot;]</span>
+<span class="hljs-built_in">console</span>.log(...hd.values()); <span class="hljs-comment">//木易 博客笔记</span>
+<span class="hljs-built_in">console</span>.log(...hd.keys()); <span class="hljs-comment">//object boreas</span></code></pre></div><p>检索包含<code>木易</code>的值组成新Map</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;object&quot;</span>, <span class="hljs-string">&quot;木易&quot;</span>], [<span class="hljs-string">&quot;boreas&quot;</span>, <span class="hljs-string">&quot;博客笔记&quot;</span>]]);
+
+<span class="hljs-keyword">let</span> newArr = [...hd].filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>) </span>&#123;
+  <span class="hljs-keyword">return</span> item[<span class="hljs-number">1</span>].includes(<span class="hljs-string">&quot;木易&quot;</span>);
+&#125;);
+
+hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>(newArr);
+<span class="hljs-built_in">console</span>.log(...hd.keys());</code></pre></div><h3 id="节点集合"><a href="#节点集合" class="headerlink" title="节点集合"></a>节点集合</h3><p>map的key可以为任意类型，下面使用DOM节点做为键来记录数据。</p><blockquote><p>HTML</p></blockquote><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">desc</span>=<span class="hljs-string">&quot;木易&quot;</span>&gt;</span>object<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">desc</span>=<span class="hljs-string">&quot;博客笔记&quot;</span>&gt;</span>boreas<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div><blockquote><p>JavaScript</p></blockquote><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> divMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<span class="hljs-keyword">const</span> divs = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&quot;div&quot;</span>);
+
+divs.forEach(<span class="hljs-function"><span class="hljs-params">div</span> =&gt;</span> &#123;
+  divMap.set(div, &#123;
+    content: div.getAttribute(<span class="hljs-string">&quot;desc&quot;</span>)
+  &#125;);
+&#125;);
+divMap.forEach(<span class="hljs-function">(<span class="hljs-params">config, elem</span>) =&gt;</span> &#123;
+  elem.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    alert(divMap.get(<span class="hljs-built_in">this</span>).content);
+  &#125;);
+&#125;);</code></pre></div><h3 id="实例操作"><a href="#实例操作" class="headerlink" title="实例操作"></a>实例操作</h3><p>当不接受协议时无法提交表单，并根据自定义信息提示用户。</p><blockquote><p>HTML</p></blockquote><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">onsubmit</span>=<span class="hljs-string">&quot;return post()&quot;</span>&gt;</span>
+    接受协议:
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;agreement&quot;</span> <span class="hljs-attr">message</span>=<span class="hljs-string">&quot;请接受接受协议&quot;</span> /&gt;</span>
+    我是学生:
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;student&quot;</span> <span class="hljs-attr">message</span>=<span class="hljs-string">&quot;网站只对学生开放&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre></div><blockquote><p>JavaScript</p></blockquote><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">post</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+
+  <span class="hljs-keyword">let</span> inputs = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&quot;[message]&quot;</span>);
+  <span class="hljs-comment">//使用set设置数据</span>
+  inputs.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span>
+    map.set(item, &#123;
+      message: item.getAttribute(<span class="hljs-string">&quot;message&quot;</span>),
+      status: item.checked
+    &#125;)
+  );
+
+  <span class="hljs-comment">//遍历Map数据</span>
+  <span class="hljs-keyword">return</span> [...map].every(<span class="hljs-function">(<span class="hljs-params">[item, config]</span>) =&gt;</span> &#123;
+    config.status || alert(config.message);
+    <span class="hljs-keyword">return</span> config.status;
+  &#125;);
+&#125;</code></pre></div><h2 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h2><p><strong>WeakMap</strong> 对象是一组键/值对的集</p><ul><li><p>键名必须是对象</p></li><li><p>WeaMap对键名是弱引用的，键值是正常引用</p></li><li><p>垃圾回收不考虑WeaMap的键名，不会改变引用计数器，键在其他地方不被引用时即删除</p></li><li><p>因为WeakMap 是弱引用，由于其他地方操作成员可能会不存在，所以不可以进行<code>forEach( )</code>遍历等操作</p></li><li><p>也是因为弱引用，WeaMap 结构没有keys( )，values( )，entries( )等方法和 size 属性</p></li><li><p>当键的外部引用删除时，希望自动删除数据时使用 <code>WeakMap</code></p></li></ul><h3 id="声明定义-1"><a href="#声明定义-1" class="headerlink" title="声明定义"></a>声明定义</h3><p>以下操作由于键不是对象类型将产生错误</p><div class="hljs"><pre><code class="hljs text">new WeakSet(&quot;boreas&quot;); //TypeError: Invalid value used in weak set</code></pre></div><p>将DOM节点保存到<code>WeakSet</code></p><blockquote><p>HTML</p></blockquote><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>object<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>boreas<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div><blockquote><p>JavaScript</p></blockquote><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
+ <span class="hljs-built_in">document</span>
+   .querySelectorAll(<span class="hljs-string">&quot;div&quot;</span>)
+   .forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> hd.set(item, item.innerHTML));
+ <span class="hljs-built_in">console</span>.log(hd); <span class="hljs-comment">//WeakMap &#123;div =&gt; &quot;boreas&quot;, div =&gt; &quot;object&quot;&#125;</span></code></pre></div><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p>下面是WeakSet的常用指令</p><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> hd = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
+<span class="hljs-keyword">const</span> arr = [<span class="hljs-string">&quot;boreas&quot;</span>];
+<span class="hljs-comment">//添加操作</span>
+hd.set(arr, <span class="hljs-string">&quot;object&quot;</span>);
+<span class="hljs-built_in">console</span>.log(hd.has(arr)); <span class="hljs-comment">//true</span>
+
+<span class="hljs-comment">//删除操作</span>
+hd.delete(arr);
+
+<span class="hljs-comment">//检索判断</span>
+<span class="hljs-built_in">console</span>.log(hd.has(arr)); <span class="hljs-comment">//false</span></code></pre></div><h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><p>WakeMap的键名对象不会增加引用计数器，如果一个对象不被引用了会自动删除。</p><ul><li>下例当<code>hd</code>删除时内存即清除，因为WeakMap是弱引用不会产生引用计数</li><li>当垃圾回收时因为对象被删除，这时WakeMap也就没有记录了</li></ul><div class="hljs"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
+<span class="hljs-keyword">let</span> hd = &#123;&#125;;
+map.set(hd, <span class="hljs-string">&quot;boreas&quot;</span>);
+hd = <span class="hljs-literal">null</span>;
+<span class="hljs-built_in">console</span>.log(map);
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-built_in">console</span>.log(map);
+&#125;, <span class="hljs-number">1000</span>);</code></pre></div><h3 id="选课案例"><a href="#选课案例" class="headerlink" title="选课案例"></a>选课案例</h3><p><img src="https://s1.ax1x.com/2020/08/21/dNsfSJ.gif" srcset="/img/loading.gif"></p><blockquote><p>HTML</p></blockquote><p>​</p><div class="hljs"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>php<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:;&quot;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>js<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:;&quot;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>木易博客<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;javascript:;&quot;</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;count&quot;</span>&gt;</span>共选了0门课<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;lists&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></div><blockquote><p>CSS</p></blockquote><p>​</p><div class="hljs"><pre><code class="hljs css">* &#123;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-selector-tag">body</span> &#123;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100vw</span>;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">box-sizing</span>: border-box;
+&#125;
+<span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">border</span>: solid <span class="hljs-number">2px</span> <span class="hljs-number">#ddd</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span>;
+&#125;
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">:last-of-type</span> &#123;
+  <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">2px</span>;
+&#125;
+<span class="hljs-selector-tag">ul</span> &#123;
+  <span class="hljs-attribute">list-style</span>: none;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;
+  <span class="hljs-attribute">flex-direction</span>: column;
+&#125;
+<span class="hljs-selector-tag">li</span> &#123;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;
+  <span class="hljs-attribute">border</span>: solid <span class="hljs-number">2px</span> <span class="hljs-number">#e67e22</span>;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">justify-content</span>: space-between;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#333</span>;
+  <span class="hljs-attribute">transition</span>: <span class="hljs-number">1s</span>;
+&#125;
+<span class="hljs-selector-tag">a</span> &#123;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">text-decoration</span>: none;
+  <span class="hljs-attribute">text-align</span>: center;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#16a085</span>;
+  <span class="hljs-attribute">color</span>: white;
+  <span class="hljs-attribute">cursor</span>: pointer;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">5px</span>;
+&#125;
+<span class="hljs-selector-class">.remove</span> &#123;
+  <span class="hljs-attribute">border</span>: solid <span class="hljs-number">2px</span> <span class="hljs-number">#eee</span>;
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.8</span>;
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#eee</span>;
+&#125;
+<span class="hljs-selector-class">.remove</span> <span class="hljs-selector-tag">a</span> &#123;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#eee</span>;
+&#125;
+<span class="hljs-selector-tag">p</span> &#123;
+  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">20px</span>;
+&#125;
+<span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">span</span> &#123;
+  <span class="hljs-attribute">display</span>: inline-block;
+  <span class="hljs-attribute">background</span>: <span class="hljs-number">#16a085</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span>;
+  <span class="hljs-attribute">color</span>: white;
+  <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">10px</span>;
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>;
+&#125;</code></pre></div><blockquote><p>JavaScript</p></blockquote><div class="hljs"><pre><code class="hljs javascript">&lt;script&gt;
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Lesson</span> </span>&#123;
+    <span class="hljs-keyword">constructor</span>() &#123;
+      <span class="hljs-built_in">this</span>.lis = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">&quot;ul&gt;li&quot;</span>);
+      <span class="hljs-built_in">this</span>.countELem = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;count&quot;</span>);
+      <span class="hljs-built_in">this</span>.listElem = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;lists&quot;</span>);
+      <span class="hljs-built_in">this</span>.map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
+    &#125;
+    run() &#123;
+      <span class="hljs-built_in">this</span>.lis.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+        item.querySelector(<span class="hljs-string">&quot;a&quot;</span>).addEventListener(<span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> &#123;
+          <span class="hljs-keyword">const</span> elem = event.target;
+          <span class="hljs-keyword">const</span> state = elem.getAttribute(<span class="hljs-string">&quot;select&quot;</span>);
+          <span class="hljs-keyword">if</span> (state) &#123;
+            elem.removeAttribute(<span class="hljs-string">&quot;select&quot;</span>);
+            <span class="hljs-built_in">this</span>.map.delete(elem.parentElement);
+            elem.innerHTML = <span class="hljs-string">&quot;+&quot;</span>;
+            elem.style.backgroundColor = <span class="hljs-string">&quot;green&quot;</span>;
+          &#125; <span class="hljs-keyword">else</span> &#123;
+            elem.setAttribute(<span class="hljs-string">&quot;select&quot;</span>, <span class="hljs-literal">true</span>);
+            <span class="hljs-built_in">this</span>.map.set(elem.parentElement, <span class="hljs-literal">true</span>);
+            elem.innerHTML = <span class="hljs-string">&quot;-&quot;</span>;
+            elem.style.backgroundColor = <span class="hljs-string">&quot;red&quot;</span>;
+          &#125;
+          <span class="hljs-built_in">this</span>.render();
+        &#125;);
+      &#125;);
+    &#125;
+    count() &#123;
+      <span class="hljs-keyword">return</span> [...this.lis].reduce(<span class="hljs-function">(<span class="hljs-params">count, item</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">return</span> (count += <span class="hljs-built_in">this</span>.map.has(item) ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>);
+      &#125;, <span class="hljs-number">0</span>);
+    &#125;
+    lists() &#123;
+      <span class="hljs-keyword">return</span> [...this.lis]
+        .filter(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+          <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.map.has(item);
+        &#125;)
+        .map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+          <span class="hljs-keyword">return</span> <span class="hljs-string">`&lt;span&gt;<span class="hljs-subst">$&#123;item.querySelector(<span class="hljs-string">&quot;span&quot;</span>).innerHTML&#125;</span>&lt;/span&gt;`</span>;
+        &#125;);
+    &#125;
+    render() &#123;
+      <span class="hljs-built_in">this</span>.countELem.innerHTML = <span class="hljs-string">`共选了<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.count()&#125;</span>课`</span>;
+      <span class="hljs-built_in">this</span>.listElem.innerHTML = <span class="hljs-built_in">this</span>.lists().join(<span class="hljs-string">&quot;&quot;</span>);
+    &#125;
+  &#125;
+  <span class="hljs-keyword">new</span> Lesson().run();
+</code></pre></div></div><hr><div><div class="post-metas mb-3"><div class="post-meta mr-3"><i class="iconfont icon-category"></i> <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a> <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/JavaScript/">JavaScript</a></div><div class="post-meta"><i class="iconfont icon-tags"></i> <a class="hover-with-bg" href="/tags/Map/">Map</a> <a class="hover-with-bg" href="/tags/JS/">JS</a></div></div><p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p><div class="post-prevnext row"><article class="post-prev col-6"><a href="/posts/2/index.html"><i class="iconfont icon-arrowleft"></i> <span class="hidden-mobile">JavaScript：Set</span> <span class="visible-mobile">Previous</span></a></article><article class="post-next col-6"> <a href="/posts/16/index.html"><span class="hidden-mobile">图解HTTP第四章：返回结果的HTTP状态码</span> <span class="visible-mobile">Next</span><i class="iconfont icon-arrowright"></i></a></article></div></div></article></div></div></div><div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn"><div id="toc"><p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p><div class="toc-body" id="toc-body"></div></div></div></div></div><a id="scroll-top-button" href="#" role="button"><i class="iconfont icon-arrowup" aria-hidden="true"></i></a><div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable modal-lg" role="document"><div class="modal-content"><div class="modal-header text-center"><h4 class="modal-title w-100 font-weight-bold">Search</h4> <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span></button></div><div class="modal-body mx-3"><div class="md-form mb-5"> <input type="text" id="local-search-input" class="form-control validate"> <label data-error="x" data-success="v" for="local-search-input">keyword</label></div><div class="list-group" id="local-search-result"></div></div></div></div></div></main><footer class="text-center mt-5 py-3"><div class="footer-content"> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>页脚</span></a><i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a></div></footer><script src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js"></script><link rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css"><script>NProgress.configure({showSpinner:!1,trickleSpeed:200}),NProgress.start(),document.addEventListener("DOMContentLoaded",function(){window.NProgress&&window.NProgress.inc()}),window.addEventListener("load",function(){NProgress.done()})</script><script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script><script src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script><script src="/js/debouncer.js"></script><script src="/js/events.js"></script><script src="/js/plugins.js"></script><script src="/js/lazyload.js"></script><script src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js"></script><script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script><script src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js"></script><script defer="defer" src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script><script src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js"></script><script>!function(t,i){(0,Fluid.plugins.typing)(i.getElementById("subtitle").title)}(window,document)</script><script src="/js/local-search.js"></script><script>document.querySelector("#local-search-input").onclick=function(){searchFunc("/local-search.xml","local-search-input","local-search-result"),this.onclick=null}</script><script defer="defer">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?7c3a86d2ad975111fcb1544184425260";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><script src="/js/boot.js"></script></body></html>
